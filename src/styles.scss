@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$scropper-primary: mat.define-palette(mat.$indigo-palette);
+$scropper-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$scropper-warn: mat.define-palette(mat.$red-palette);
+
+$scropper-theme: mat.define-light-theme((
+  color: (
+    primary: $scropper-primary,
+    accent: $scropper-accent,
+    warn: $scropper-warn,
+  )
+));
+
+@include mat.all-component-themes($scropper-theme);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+}
