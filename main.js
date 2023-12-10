@@ -32,7 +32,8 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    // Disabled for debuggng purposes
-    //app.quit()
+    app.quit()
   }
+
+  app.quit() // Only for development purposes
 })
