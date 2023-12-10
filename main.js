@@ -1,7 +1,13 @@
 const { app, BrowserWindow } = require('electron')
+const screenshot = require('screenshot-desktop')
+
+screenshot
+  .listDisplays()
+  .then((displays) => {
+    console.log(displays)
+  })
 
 const createWindow = () => {
-
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -11,7 +17,6 @@ const createWindow = () => {
   })
 
   mainWindow.loadFile('dist/index.html')
-
   //mainWindow.webContents.openDevTools()
 }
 
