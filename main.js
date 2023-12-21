@@ -1,12 +1,10 @@
-const { app, BrowserWindow } = require('electron')
-const screenshot = require('screenshot-desktop')
+const { app, BrowserWindow } = require('electron');
+const screenshot = require('screenshot-desktop');
 
-screenshot
-  .listDisplays()
-  .then((displays) => {
-    console.log(displays)
-    console.log(process.platform)
-  })
+screenshot.listDisplays().then((displays) => {
+  console.log(displays);
+  console.log(process.platform);
+});
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -14,26 +12,27 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       //preload: path.join(__dirname, 'preload.js')
-    }
-  })
+    },
+  });
 
-  mainWindow.loadFile('dist/index.html')
+  mainWindow.loadFile('dist/index.html');
   //mainWindow.webContents.openDevTools()
-}
+};
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0)
-      createWindow()
-  })
-})
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
 
-  app.quit() // Only for development purposes
-})
+  app.quit(); // Only for development purposes
+});
