@@ -2,8 +2,20 @@ const { app, BrowserWindow } = require('electron');
 const screenshot = require('screenshot-desktop');
 
 screenshot.listDisplays().then((displays) => {
-  console.log(displays);
-  console.log(process.platform);
+  for (let index = 0; index < displays.length; index++) {
+    const display = displays[index];
+    const imgpath = path.join(__dirname, Date.now() + '_' + index + '.png')
+
+    screenshot({
+      screen: display.id,
+      format: 'png',
+      filename: imgpath,
+    }).then(() => {
+        console.log('Success');
+    }).catch((err) => {
+      console.warn(err);
+    });
+  }
 });
 
 const createWindow = () => {
